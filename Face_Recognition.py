@@ -68,7 +68,13 @@ def main():
                 FR_Testing_Dir = os.path.join(os.path.join("FaceRecognition","test"))
                 test_data = Data()
                 test_data.create_testing_data(FR_Testing_Dir, Img_Size)
-                print("prediction:   ", ft_model.predict(test_data.X,batch_size=1))
+                if (ft_model.predict(test_data.X,batch_size=1) > 0.9):
+                    if (ft_model.predict(test_data.X,batch_size=1) > 0.9):
+                        print("this is the right face")
+                    else:
+                        print("this is not thew right face")
+                else:
+                    print("this is not a face")
 
 if __name__ == "__main__":
     main()
