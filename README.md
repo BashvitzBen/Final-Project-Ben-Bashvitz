@@ -8,5 +8,5 @@ to use this project you must do the following things:
    in the newly created Face folder and do the sa,e for the Not folders.
 5. extract all zipped folders in the FaceRecognition/train directory and place them in a new folder called Not.
 6. go to this google drive link and dowload the following files and folders from there straight into the main folder and unzip them there if necessary:
-   FaceX.pickle, FaceY.pickle, ft_model
+   FaceX.pickle, FaceY.pickle, ft_model. the link: https://drive.google.com/drive/folders/16tJDZuT9XYcYUCAxfHe0t-plwiZkRB96?usp=sharing
 once all of this is done you can run the project and follow the instructions from the console.
