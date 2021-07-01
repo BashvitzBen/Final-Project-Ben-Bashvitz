@@ -33,6 +33,8 @@ class Data():
         #        also prompts the user about the process of loading in the images and labels.
                  
         training_data = []
+        if(name_x == "FaceX.pickle"):
+            print("Loading in the data for the face detection model.")
         try:
             pickle_in = open(name_x,"rb") 
             self.X = pickle.load(pickle_in)
@@ -40,7 +42,7 @@ class Data():
             self.y = pickle.load(pickle_in) 
             
         except Exception as e1:
-            print("It seems this is the first time you are running this program. Before you continue,")
+            print("It seems this is the first time you are running this program. Or, you are about to train a new model. Before you continue,")
             print("place the 'Face Detection' and 'FaceRecognition' folder inside the project folder.")
             print("if you have already placed the folders in the project folder enter '1'.")
             print("Otherwise, enter '0' and run the program again once you have done so.")
@@ -91,7 +93,8 @@ class Data():
             img_array = cv2.imread(os.path.join(Data_Dir,img), cv2.IMREAD_GRAYSCALE)
             new_array = cv2.resize(img_array,(Img_Size,Img_Size))
         self.X.append(np.array(new_array).reshape(-1,Img_Size,Img_Size,1))
-        self.X = self.X/255.0
+        self.X = (np.array(self.X)/255.0)[0]
+        
         
         
 

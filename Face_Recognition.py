@@ -37,7 +37,7 @@ def main():
             pass
         name_x = name + "X.pickle"
         name_y = name + "Y.pickle"
-        FR_Training_Dir = os.path.join("train", name)
+        FR_Training_Dir = os.path.join("FaceRecognition", "train")
         FR_Categories = [name, "Not"]
         if flag_new:
             print("In order for the face recognition algorithm to work, you will need to place at least 1024 images")
@@ -50,7 +50,9 @@ def main():
                 fr_data = Data()
                 fr_data.create_training_data(FR_Training_Dir, FR_Categories, Img_Size, name_x, name_y)
                 if(len(fr_data.X) != 0):
-                    fr_model = model.initialize_recognition_model(fr_data.X, fr_data.y, name=name)
+                    fr_model = model()
+                    print(fr_data.X.shape,fr_data.y.shape, name)
+                    fr_model.initialize_recognition_model(fr_data.X, fr_data.y, name)
                     print("The model has been trained to recongise ", name)
                     print("To test the model, run the program again.")
                     print("and place an image in the 'test' folder that is inside the 'FaceRecognition' folder.")
@@ -68,8 +70,8 @@ def main():
                 FR_Testing_Dir = os.path.join(os.path.join("FaceRecognition","test"))
                 test_data = Data()
                 test_data.create_testing_data(FR_Testing_Dir, Img_Size)
-                if (ft_model.predict(test_data.X,batch_size=1) > 0.9):
-                    if (ft_model.predict(test_data.X,batch_size=1) > 0.9):
+                if (ft_model.model.predict(test_data.X,batch_size=1) > 0.9):
+                    if (ft_model.model.predict(test_data.X,batch_size=1) > 0.9):
                         print("this is the right face")
                     else:
                         print("this is not thew right face")
